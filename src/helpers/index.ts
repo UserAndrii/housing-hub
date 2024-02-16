@@ -1,0 +1,1 @@
+export { advertValidationSchema } from './advertValidationSchema';

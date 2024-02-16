@@ -38,7 +38,7 @@ const Advert: React.FC<IAd> = ({
         <img className={s.ad_image} src={images} alt={title} />
         <div className={s.ad_price_wrap}>
           <p className={s.ad_price}>
-            Price: <span className={s.ad_price_accent}>${price}</span>
+            Ціна: <span className={s.ad_price_accent}>${price}</span>
           </p>
         </div>
       </div>

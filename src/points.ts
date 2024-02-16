@@ -3,7 +3,7 @@ export const points = [
     id: 12,
     position: [49.842957, 24.031111],
     title: 'Point 1',
-    price: 100,
+    price: 1000,
     images: 'https://mayak.kiev.ua/sites/mayak.kiev/files/news/apartamenti.jpg',
     description: 'Description for Point 1',
   },
