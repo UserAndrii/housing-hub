@@ -44,17 +44,17 @@ const Header: React.FC = () => {
         <ul className={s.header_list}>
           <li className={s.header_item}>
             <a className={s.header_link} href="/rent">
-              Apartments for rent
-            </a>
-          </li>
-          <li className={s.header_item}>
-            <a className={cn(s.header_link, s.disabled)} href="/add">
               Advertisement
             </a>
           </li>
           <li className={s.header_item}>
             <a className={cn(s.header_link, s.disabled)} href="/auction">
               Auction
+            </a>
+          </li>
+          <li className={s.header_item}>
+            <a className={cn(s.header_link, s.disabled)} href="/about">
+              About us
             </a>
           </li>
         </ul>

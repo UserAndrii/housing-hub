@@ -1,0 +1,24 @@
+.container {
+  max-height: calc(100vh - 70px);
+  padding: 20px 12px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #283149;
+  }
+}
+
+.ads_list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

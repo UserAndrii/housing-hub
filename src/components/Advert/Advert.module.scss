@@ -1,0 +1,67 @@
+.ad_container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 20px 12px;
+  border-radius: 14px;
+  background-color: #fff;
+}
+
+.ad_image_wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.ad_image {
+  width: 256px;
+  object-fit: cover;
+  border-radius: 14px;
+  background-position: center;
+  background-size: cover;
+  background: linear-gradient(
+      180deg,
+      rgba(18, 20, 23, 0.5) 2.5%,
+      rgba(18, 20, 23, 0) 41.07%
+    ),
+    #f3f3f2;
+}
+
+.ad_price_wrap {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  padding: 5px;
+  background-color: #565555;
+  border-top-right-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+
+.ad_price {
+  font-size: 0.875rem;
+  color: #f3f3f2;
+}
+
+.ad_price_accent {
+  font-weight: 600;
+  color: #ceff7b;
+}
+
+.ad_title {
+  font-size: 0.875rem;
+}
+
+.ad_description {
+  letter-spacing: -0.02em;
+}
+
+.ad_location_wrap {
+  display: flex;
+  gap: 10px;
+}
+
+.ad_location_icon {
+  width: 20px;
+  height: 20px;
+}

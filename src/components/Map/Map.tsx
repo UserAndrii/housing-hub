@@ -1,63 +1,20 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import s from './Map.module.scss';
-import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import marker from '../../images/location.svg';
-import selectedMarker from '../../images/selected-location.svg';
+import { IAd } from '../../types';
 
-const Map: React.FC = () => {
-  const points = [
-    {
-      id: 12,
-      position: [49.842957, 24.031111],
-      title: 'Point 1',
-      price: 100,
-      images:
-        'https://mayak.kiev.ua/sites/mayak.kiev/files/news/apartamenti.jpg',
-      description: 'Description for Point 1',
-    },
-    {
-      id: 123,
-      position: [49.843, 24.031],
-      title: 'Point 2',
-      price: 150,
-      images:
-        'https://cdn.riastatic.com/photosnewr/ria/dom_news_logo/apartamenty-chto-eto__211182-620x0.jpg',
-      description: 'Description for Point 2',
-    },
-    {
-      id: 125,
-      position: [49.842, 24.032],
-      title: 'Point 3',
-      price: 200,
-      images:
-        'https://24tv.ua/resources/photos/news/201909/1203371_9412140.jpg?201909132013&w=1351&h=901&fit=cover%27&output=webp',
-      description: 'Description for Point 3',
-    },
-    {
-      id: 126,
-      position: [49.844, 24.03],
-      title: 'Point 4',
-      price: 120,
-      images:
-        'https://vison.te.ua/files/user_files/1420d12c76_6259_118073/ca595893dfb58bc73500.jpg',
-      description: 'Description for Point 4',
-    },
-    {
-      id: 127,
-      position: [49.842, 24.03],
-      title: 'Point 5',
-      price: 180,
-      images: 'https://his.ua/img/articles/FJvyWFD5JE.jpg',
-      description: 'Description for Point 5',
-    },
-  ];
+interface IProp {
+  points: IAd[];
+}
 
+const Map: React.FC<IProp> = ({ points }) => {
   return (
     <MapContainer
       center={[49.842957, 24.031111]}
-      zoom={12}
+      zoom={13}
       className={s.map_container}
     >
       <TileLayer
@@ -65,10 +22,10 @@ const Map: React.FC = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {points.map(ad => (
+      {points.map(point => (
         <Marker
-          key={ad.id}
-          position={{ lat: ad.position[0], lng: ad.position[1] }}
+          key={point.id}
+          position={{ lat: point.position[0], lng: point.position[1] }}
           icon={L.icon({
             iconUrl: marker,
             iconSize: [40, 40],
@@ -76,7 +33,7 @@ const Map: React.FC = () => {
             popupAnchor: [1, -34],
           })}
         >
-          <Popup>{ad.title}</Popup>
+          <Popup>{point.title}</Popup>
         </Marker>
       ))}
     </MapContainer>
