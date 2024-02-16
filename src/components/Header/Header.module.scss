@@ -8,6 +8,7 @@
 .hesder_content {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   max-width: 1240px;
   margin: auto;
@@ -137,5 +138,62 @@
   &.disabled {
     color: #888;
     pointer-events: none;
+  }
+}
+
+.header_add_btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+  font-weight: 500;
+  font-size: 1rem;
+
+  width: 200px;
+  height: 60px;
+  padding: 12px 20px;
+
+  border: none;
+  border-radius: 30px;
+  background: #ceff7b;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  &:hover {
+    background: #c3ff5b;
+  }
+
+  span {
+    display: inline-block;
+    position: relative;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  &:hover span {
+    transform: translate3d(1rem, 0, 0);
+  }
+
+  svg {
+    position: absolute;
+    width: 1.1em;
+    left: 0px;
+    opacity: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: left, opacity;
+    * {
+      stroke-width: 3;
+      stroke-color: transparent;
+    }
+  }
+
+  &:hover svg {
+    opacity: 1;
+    left: -2rem;
   }
 }
