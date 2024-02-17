@@ -1,17 +1,9 @@
 import 'normalize.css';
-import React from 'react';
-import Layout from './components/Layout';
-import Map from './components/Map';
-import AdvertList from './components/AdvertList';
-import { points } from './points';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routing';
 
 const App: React.FC = () => {
-  return (
-    <Layout>
-      <Map points={points} />
-      <AdvertList ads={points} />
-    </Layout>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

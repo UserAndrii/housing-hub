@@ -19,7 +19,7 @@ const Advert: React.FC<IAd> = ({
         const response = await axios.get(
           `https://nominatim.openstreetmap.org/reverse?format=json&lat=${position[0]}&lon=${position[1]}`
         );
-        if (response?.data?.address?.city) {
+        if (response.data.address?.city) {
           setCityName(response.data.address.city);
         }
       } catch (error) {
@@ -46,7 +46,7 @@ const Advert: React.FC<IAd> = ({
       <p className="">{description}</p>
       <div className={s.ad_location_wrap}>
         <img className={s.ad_location_icon} src={mapIcon} alt="Location Icon" />
-        <p>{cityName}</p>
+        <p>{cityName || 'Україна'}</p>
       </div>
     </div>
   );

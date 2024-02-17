@@ -56,7 +56,7 @@ const Header: React.FC = () => {
     <>
       <header className={s.header_container}>
         <div className={s.hesder_content}>
-          <a className={s.header_logo} href="./">
+          <a className={s.header_logo} href="/housing-hub">
             <span></span>
             <span></span>
             <span></span>
@@ -73,17 +73,23 @@ const Header: React.FC = () => {
 
           <ul className={s.header_list}>
             <li className={s.header_item}>
-              <a className={s.header_link} href="/rent">
+              <a className={s.header_link} href="/housing-hub/advertisement">
                 Оголошення
               </a>
             </li>
             <li className={s.header_item}>
-              <a className={cn(s.header_link, s.disabled)} href="/auction">
+              <a
+                className={cn(s.header_link, s.disabled)}
+                href="/housing-hub/auction"
+              >
                 Аукціон
               </a>
             </li>
             <li className={s.header_item}>
-              <a className={cn(s.header_link, s.disabled)} href="/about">
+              <a
+                className={cn(s.header_link, s.disabled)}
+                href="/housing-hub/about"
+              >
                 Про нас
               </a>
             </li>

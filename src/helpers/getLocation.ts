@@ -1,6 +1,7 @@
+const REACT_APP_GEO_API_KEY = process.env.REACT_APP_GEO_API_KEY;
+
 export const getLocation = async (address: string) => {
-  const apiKey = 'AIzaSyA4vhbUGL6KAIkyymqbxNV-xdP03HZaB48';
-  const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
+  const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${REACT_APP_GEO_API_KEY}`;
 
   try {
     const response = await fetch(apiUrl);
