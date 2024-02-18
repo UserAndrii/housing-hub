@@ -1,69 +1,49 @@
-// import React from 'react';
-// import L from 'leaflet';
-// import 'leaflet/dist/leaflet.css';
-// import s from './Map.module.scss';
-// import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-// import marker from '../../images/location.svg';
-// import { IAd } from '../../types';
+import React, { useCallback, useRef } from 'react';
+import { debounce } from 'lodash';
+import { useSelector } from 'react-redux';
+import { GoogleMap, Marker } from '@react-google-maps/api';
 
-// interface IProp {
-//   points: IAd[];
-// }
-
-// const Map: React.FC<IProp> = ({ points }) => {
-//   return (
-//     <MapContainer
-//       center={[49.842957, 24.031111]}
-//       zoom={13}
-//       className={s.map_container}
-//     >
-//       <TileLayer
-//         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-//         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//       />
-
-//       {points.map(point => (
-//         <Marker
-//           key={point.id}
-//           position={{ lat: point.position[0], lng: point.position[1] }}
-//           icon={L.icon({
-//             iconUrl: marker,
-//             iconSize: [40, 40],
-//             iconAnchor: [12, 41],
-//             popupAnchor: [1, -34],
-//           })}
-//         >
-//           <Popup>{point.title}</Popup>
-//         </Marker>
-//       ))}
-//     </MapContainer>
-//   );
-// };
-
-// export default Map;
-
-import React, { useRef } from 'react';
 import s from './Map.module.scss';
-import { IAd } from '../../types';
-import { GoogleMap, InfoWindow, Marker } from '@react-google-maps/api';
 import marker from '../../images/location.svg';
+import selectedMarker from '../../images/selected-location.svg';
+
+import { defaultTheme } from './Theme';
+import { selectAd } from '../../redux/selectors';
 
 interface IProp {
-  points: IAd[];
   center: { lat: number; lng: number };
+  selectedPoint: number | null;
+  setSelectedPoint: (n: number | null) => void;
+  setVisibleMarkers: (a: number[]) => void;
 }
 
-const Map: React.FC<IProp> = ({ points, center }) => {
-  const mapRef = useRef<google.maps.Map | null>(null);
+const Map: React.FC<IProp> = ({
+  center,
+  selectedPoint,
+  setSelectedPoint,
+  setVisibleMarkers,
+}) => {
+  const points = useSelector(selectAd);
+  const mapRef = useRef<google.maps.Map | undefined>(undefined);
 
   const containerStyle = {
     width: '100%',
     height: '100%',
   };
 
-  const svgToUrl = (svg: string) => {
-    const encoded = encodeURIComponent(svg);
-    return `data:image/svg+xml;utf8,${encoded}`;
+  const defaultOptions = {
+    panControl: true,
+    zoomControl: true,
+    mapTypeControl: false,
+    scaleControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    clicableIcons: false,
+    keyboardShortcuts: false,
+    scrollwheel: true,
+    disableDoubleClickZoom: false,
+    fullscreenControl: false,
+    styles: defaultTheme,
   };
 
   const onLoad = React.useCallback(function callback(map: google.maps.Map) {
@@ -71,35 +51,46 @@ const Map: React.FC<IProp> = ({ points, center }) => {
   }, []);
 
   const onUnmount = React.useCallback(function callback() {
-    mapRef.current = null;
+    mapRef.current = undefined;
   }, []);
+
+  const handleBoundsChanged = useCallback(
+    debounce(() => {
+      if (mapRef.current) {
+        const bounds = mapRef.current.getBounds();
+        if (bounds) {
+          const visibleMarkers = points.filter(point =>
+            bounds.contains(
+              new google.maps.LatLng(point.position.lat, point.position.lng)
+            )
+          );
+          const visibleMarkerIds = visibleMarkers.map(marker => marker.id);
+          setVisibleMarkers(visibleMarkerIds);
+        }
+      }
+    }, 300),
+    [mapRef, points]
+  );
 
   return (
     <div className={s.map_container}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
+        zoom={13}
         onLoad={onLoad}
         onUnmount={onUnmount}
+        onClick={() => setSelectedPoint(null)}
+        onBoundsChanged={handleBoundsChanged}
+        options={defaultOptions}
       >
-        {points.map(point => (
+        {points.map(({ id, position }) => (
           <Marker
-            key={point.id}
-            position={{ lat: point.position[0], lng: point.position[1] }}
-            icon={{
-              url: svgToUrl(marker),
-              scaledSize: new window.google.maps.Size(40, 40),
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(20, 20),
-            }}
-          >
-            <InfoWindow
-              position={{ lat: point.position[0], lng: point.position[1] }}
-            >
-              <div>{point.title}</div>
-            </InfoWindow>
-          </Marker>
+            key={id}
+            position={position}
+            icon={{ url: selectedPoint === id ? selectedMarker : marker }}
+            onClick={() => setSelectedPoint(id)}
+          />
         ))}
       </GoogleMap>
     </div>

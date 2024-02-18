@@ -1,37 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
+import { IAd } from '../../types';
+
 import s from './Advert.module.scss';
 import mapIcon from '../../images/map.svg';
-import { IAd } from '../../types';
-import axios from 'axios';
 
-const Advert: React.FC<IAd> = ({
-  position,
-  title,
-  price,
-  images,
-  description,
-}) => {
-  const [cityName, setCityName] = useState('');
-
-  useEffect(() => {
-    const fetchCityName = async (position: number[]) => {
-      try {
-        const response = await axios.get(
-          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${position[0]}&lon=${position[1]}`
-        );
-        if (response.data.address?.city) {
-          setCityName(response.data.address.city);
-        }
-      } catch (error) {
-        console.error('Error fetching city name:', error);
-      }
-    };
-
-    if (position.length > 0) {
-      fetchCityName(position);
-    }
-  }, [position]);
-
+const Advert: React.FC<IAd> = ({ title, price, images, description }) => {
   return (
     <div className={s.ad_container}>
       <div className={s.ad_image_wrap}>
@@ -46,7 +20,7 @@ const Advert: React.FC<IAd> = ({
       <p className="">{description}</p>
       <div className={s.ad_location_wrap}>
         <img className={s.ad_location_icon} src={mapIcon} alt="Location Icon" />
-        <p>{cityName || 'Україна'}</p>
+        <p>Україна</p>
       </div>
     </div>
   );

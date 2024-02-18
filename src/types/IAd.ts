@@ -1,6 +1,6 @@
 export interface IAd {
   id: number;
-  position: number[];
+  position: { lat: number; lng: number };
   title: string;
   price: number;
   images: string;

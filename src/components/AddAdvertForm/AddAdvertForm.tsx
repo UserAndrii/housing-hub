@@ -2,18 +2,23 @@ import React, { ChangeEvent, useRef, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import cn from 'classnames';
+import Autocomplete from '../Autocomplete';
 import s from './AddAdvertForm.module.scss';
 import deleteIcon from '../../images/delete-icon.svg';
 import uploadFoto from '../../images/upload-foto.svg';
 
 import { IFormValues } from '../../types';
+import { useAppDispatch } from '../../redux/store';
+import { createNewAd } from '../../redux/operations';
 import { advertValidationSchema } from '../../helpers';
 
 interface IProp {
   onClose: () => void;
+  isOpen?: boolean;
 }
 
-const AddAdvertForm: React.FC<IProp> = ({ onClose }) => {
+const AddAdvertForm: React.FC<IProp> = ({ onClose, isOpen }) => {
+  const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -49,6 +54,7 @@ const AddAdvertForm: React.FC<IProp> = ({ onClose }) => {
     const formData = new FormData();
 
     if (values) {
+      console.log(values);
       const { photo, price, title, description, position } = values;
 
       formData.append('photo', photo);
@@ -58,7 +64,7 @@ const AddAdvertForm: React.FC<IProp> = ({ onClose }) => {
       formData.append('position', position);
 
       try {
-        // dispatch(createNewAdvert(formData))
+        dispatch(createNewAd(formData));
       } catch (error) {
         console.error('Помилка:', error);
       }
@@ -183,18 +189,13 @@ const AddAdvertForm: React.FC<IProp> = ({ onClose }) => {
           </div>
 
           <div className={s.form_input_wrap}>
-            <label className={s.form_label} htmlFor="position">
-              Адреса
+            <label className={s.form_label}>
+              Адреса{' '}
               <span className={s.form_label_information}>
                 (місто, вулиця, номер будинку)
               </span>
             </label>
-            <Field
-              className={s.form_input}
-              type="text"
-              id="position"
-              name="position"
-            />
+            <Autocomplete setFieldValue={setFieldValue} isOpen={isOpen} />
             <ErrorMessage
               className={s.form_error_message}
               name="position"

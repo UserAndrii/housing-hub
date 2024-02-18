@@ -1,11 +1,14 @@
+import { NavLink, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import s from './Header.module.scss';
-import logo from '../../images/hh-logo.png';
+
 import cn from 'classnames';
+import s from './Header.module.scss';
 import ModalWindow from '../ModalWindow';
+import logo from '../../images/hh-logo.png';
 import AddAdvertForm from '../AddAdvertForm';
 
 const Header: React.FC = () => {
+  const location = useLocation();
   const [uanRate, setUanRate] = useState(1.0);
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -56,7 +59,7 @@ const Header: React.FC = () => {
     <>
       <header className={s.header_container}>
         <div className={s.hesder_content}>
-          <a className={s.header_logo} href="/housing-hub">
+          <NavLink className={s.header_logo} to="/housing-hub">
             <span></span>
             <span></span>
             <span></span>
@@ -69,29 +72,35 @@ const Header: React.FC = () => {
               height={40}
             />
             <p className={s.header_logo_text}>HousingHub</p>
-          </a>
+          </NavLink>
 
           <ul className={s.header_list}>
             <li className={s.header_item}>
-              <a className={s.header_link} href="/housing-hub/advertisement">
+              <NavLink
+                className={cn(s.header_link, {
+                  [s.active]:
+                    location.pathname === '/housing-hub/advertisement',
+                })}
+                to="/housing-hub/advertisement"
+              >
                 Оголошення
-              </a>
+              </NavLink>
             </li>
             <li className={s.header_item}>
-              <a
+              <NavLink
                 className={cn(s.header_link, s.disabled)}
-                href="/housing-hub/auction"
+                to="/housing-hub/auction"
               >
                 Аукціон
-              </a>
+              </NavLink>
             </li>
             <li className={s.header_item}>
-              <a
+              <NavLink
                 className={cn(s.header_link, s.disabled)}
-                href="/housing-hub/about"
+                to="/housing-hub/about"
               >
                 Про нас
-              </a>
+              </NavLink>
             </li>
           </ul>
 
@@ -130,7 +139,7 @@ const Header: React.FC = () => {
       </header>
 
       <ModalWindow onClose={handleCloseModal} isOpen={isModalOpen}>
-        <AddAdvertForm onClose={handleCloseModal} />
+        <AddAdvertForm onClose={handleCloseModal} isOpen={isModalOpen} />
       </ModalWindow>
     </>
   );

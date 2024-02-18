@@ -1,7 +1,7 @@
 export const points = [
   {
     id: 1,
-    position: [49.842957, 24.031111],
+    position: { lat: 49.842957, lng: 24.031111 },
     title: 'Point 1',
     price: 1000,
     images: 'https://mayak.kiev.ua/sites/mayak.kiev/files/news/apartamenti.jpg',
@@ -9,7 +9,7 @@ export const points = [
   },
   {
     id: 2,
-    position: [50.450001, 30.523333],
+    position: { lat: 50.450001, lng: 30.523333 },
     title: 'Point 2',
     price: 1500,
     images:
@@ -18,7 +18,7 @@ export const points = [
   },
   {
     id: 3,
-    position: [48.464722, 35.046944],
+    position: { lat: 48.464722, lng: 35.046944 },
     title: 'Point 3',
     price: 800,
     images: 'https://hk.partnerguesthouse.net/web/image/321169',
@@ -26,7 +26,7 @@ export const points = [
   },
   {
     id: 4,
-    position: [46.482526, 30.723309],
+    position: { lat: 46.482526, lng: 30.723309 },
     title: 'Point 4',
     price: 1200,
     images:
@@ -35,7 +35,7 @@ export const points = [
   },
   {
     id: 5,
-    position: [46.482526, 31.723309],
+    position: { lat: 46.482526, lng: 31.723309 },
     title: 'Point 5',
     price: 900,
     images:
@@ -44,7 +44,7 @@ export const points = [
   },
   {
     id: 6,
-    position: [48.379433, 31.165579],
+    position: { lat: 48.379433, lng: 31.165579 },
     title: 'Point 6',
     price: 1100,
     images:
@@ -53,7 +53,7 @@ export const points = [
   },
   {
     id: 7,
-    position: [50.45466, 30.5238],
+    position: { lat: 50.45466, lng: 30.5238 },
     title: 'Point 7',
     price: 1300,
     images:
@@ -62,7 +62,7 @@ export const points = [
   },
   {
     id: 12,
-    position: [49.842957, 24.031111],
+    position: { lat: 49.842957, lng: 24.031111 },
     title: 'Point 1',
     price: 1000,
     images: 'https://mayak.kiev.ua/sites/mayak.kiev/files/news/apartamenti.jpg',
@@ -70,7 +70,7 @@ export const points = [
   },
   {
     id: 123,
-    position: [49.843, 24.031],
+    position: { lat: 49.843, lng: 24.031 },
     title: 'Point 2',
     price: 150,
     images:
@@ -79,7 +79,7 @@ export const points = [
   },
   {
     id: 125,
-    position: [49.842, 24.032],
+    position: { lat: 49.842, lng: 24.032 },
     title: 'Point 3',
     price: 200,
     images:
@@ -88,7 +88,7 @@ export const points = [
   },
   {
     id: 126,
-    position: [49.844, 24.03],
+    position: { lat: 49.844, lng: 24.03 },
     title: 'Point 4',
     price: 120,
     images:
@@ -97,7 +97,15 @@ export const points = [
   },
   {
     id: 127,
-    position: [49.842, 24.03],
+    position: { lat: 49.842, lng: 24.03 },
+    title: 'Point 5',
+    price: 180,
+    images: 'https://his.ua/img/articles/FJvyWFD5JE.jpg',
+    description: 'Description for Point 5',
+  },
+  {
+    id: 129,
+    position: { lat: 51.0, lng: 24.03 },
     title: 'Point 5',
     price: 180,
     images: 'https://his.ua/img/articles/FJvyWFD5JE.jpg',
