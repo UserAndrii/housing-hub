@@ -1,18 +1,22 @@
 {
   "files": {
-    "main.css": "/housing-hub/static/css/main.e6c01ae4.css",
-    "main.js": "/housing-hub/static/js/main.0209b020.js",
+    "main.css": "/housing-hub/static/css/main.ca69bf26.css",
+    "main.js": "/housing-hub/static/js/main.4f855e38.js",
+    "static/media/home-page-map.png": "/housing-hub/static/media/home-page-map.0eaea966147ba8461b4f.png",
+    "static/media/default-image.png": "/housing-hub/static/media/default-image.d990adfda5aa6d1d76cf.png",
     "static/media/hh-logo.png": "/housing-hub/static/media/hh-logo.384b25185f9df2cd3e39.png",
+    "static/media/apartment.jpg": "/housing-hub/static/media/apartment.95ce32d63e73dd149614.jpg",
     "static/media/map.svg": "/housing-hub/static/media/map.016cf1de29e1ebc2db1779845ab914cc.svg",
     "index.html": "/housing-hub/index.html",
     "static/media/upload-foto.svg": "/housing-hub/static/media/upload-foto.950e0424402108e64a53dfd0129c8bf1.svg",
+    "static/media/selected-location.svg": "/housing-hub/static/media/selected-location.1e3c763f8921084f3a27de75a267b690.svg",
     "static/media/delete-icon.svg": "/housing-hub/static/media/delete-icon.66044579ba8823870471ff042adba79c.svg",
-    "static/media/location.svg": "/housing-hub/static/media/location.4ca3e41df3ee20524b5de647dc411027.svg",
-    "main.e6c01ae4.css.map": "/housing-hub/static/css/main.e6c01ae4.css.map",
-    "main.0209b020.js.map": "/housing-hub/static/js/main.0209b020.js.map"
+    "static/media/location.svg": "/housing-hub/static/media/location.715dc4c801a8e554b61fb4cae0025046.svg",
+    "main.ca69bf26.css.map": "/housing-hub/static/css/main.ca69bf26.css.map",
+    "main.4f855e38.js.map": "/housing-hub/static/js/main.4f855e38.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c01ae4.css",
-    "static/js/main.0209b020.js"
+    "static/css/main.ca69bf26.css",
+    "static/js/main.4f855e38.js"
   ]
 }
