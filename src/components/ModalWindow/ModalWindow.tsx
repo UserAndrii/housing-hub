@@ -12,8 +12,17 @@ interface IProp {
 }
 
 const ModalWindow: React.FC<IProp> = ({ children, onClose, isOpen }) => {
+  const handleBackdropClick = (event: { currentTarget: any; target: any }) => {
+    if (event.currentTarget === event.target) {
+      onClose();
+    }
+  };
+
   return createPortal(
-    <div className={cn(s.modal_overlay, { [s.closed]: !isOpen })}>
+    <div
+      className={cn(s.modal_overlay, { [s.closed]: !isOpen })}
+      onClick={handleBackdropClick}
+    >
       <div className={cn(s.modal_window, { [s.closed]: !isOpen })}>
         <button className={s.modal_close_btn} onClick={onClose}>
           <svg

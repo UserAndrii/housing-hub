@@ -7,8 +7,8 @@ const Footer: React.FC = () => {
   return (
     <footer className={s.footer}>
       <p className={s.footer_text}>
-        If you liked my work or want to see more of my projects, feel free to
-        connect with me:
+        Якщо вам сподобалася моя робота або ви хочете побачити більше моїх
+        проектів, ви можете зв’язатися зі мною за наступними методами:
       </p>
 
       <div>

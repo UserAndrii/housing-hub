@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Advert from '../Advert';
 import s from './AdvertList.module.scss';
 import { useSelector } from 'react-redux';
@@ -18,6 +18,15 @@ const AdvertList: React.FC<IProp> = ({
 }) => {
   const ads = useSelector(selectAd);
   const isLoading = useSelector(selectIsLoading);
+  const [showParagraph, setShowParagraph] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowParagraph(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const sortedAds = selectedPoint
     ? ads?.filter(({ _id }) => _id === selectedPoint)
@@ -32,16 +41,25 @@ const AdvertList: React.FC<IProp> = ({
       </h2>
 
       {isLoading && (
-        <div className={s.ads_loader}>
-          <ProgressBar
-            visible={true}
-            height="80"
-            width="80"
-            borderColor="#283149"
-            barColor="#ceff7b"
-            ariaLabel="progress-bar-loading"
-          />
-        </div>
+        <>
+          <div className={s.ads_loader}>
+            <ProgressBar
+              visible={true}
+              height="80"
+              width="80"
+              borderColor="#283149"
+              barColor="#ceff7b"
+              ariaLabel="progress-bar-loading"
+            />
+          </div>
+
+          {showParagraph && (
+            <p className={s.ads_loader_text}>
+              Якщо це ваше перше завантаження, будь-ласка, зачекайте. Це може
+              зайняти до 1 хвилини. Скоро сервер на Render.com прокинеться 😉
+            </p>
+          )}
+        </>
       )}
 
       {selectedPoint && (

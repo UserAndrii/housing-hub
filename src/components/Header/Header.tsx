@@ -78,6 +78,16 @@ const Header: React.FC = () => {
             <li className={s.header_item}>
               <NavLink
                 className={cn(s.header_link, {
+                  [s.active]: location.pathname === '/housing-hub',
+                })}
+                to="/housing-hub"
+              >
+                Про нас
+              </NavLink>
+            </li>
+            <li className={s.header_item}>
+              <NavLink
+                className={cn(s.header_link, {
                   [s.active]:
                     location.pathname === '/housing-hub/advertisement',
                 })}
