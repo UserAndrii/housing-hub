@@ -54,10 +54,9 @@ const AddAdvertForm: React.FC<IProp> = ({ onClose, isOpen }) => {
     const formData = new FormData();
 
     if (values) {
-      console.log(values);
       const { photo, price, title, description, position } = values;
 
-      formData.append('photo', photo);
+      formData.append('image', photo);
       formData.append('price', price.toString());
       formData.append('title', title);
       formData.append('description', description);

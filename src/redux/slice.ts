@@ -1,15 +1,17 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { IAd } from '../types';
 import { createNewAd, getAdvert } from './operations';
 
 export interface IAdState {
+  count: number;
   ad: IAd[];
   isLoading: boolean;
   error: unknown | null;
 }
 
 const initialState: IAdState = {
+  count: 0,
   ad: [],
   isLoading: false,
   error: null,
@@ -19,17 +21,14 @@ const adSlice = createSlice({
   name: 'ad',
   initialState,
 
-  reducers: {
-    addAdvert: (state, action: PayloadAction<IAd>) => {
-      state.ad.push(action.payload);
-    },
-  },
+  reducers: {},
 
   extraReducers: builder => {
     builder
       .addCase(getAdvert.pending, handlePending)
       .addCase(getAdvert.fulfilled, (state, action) => {
-        state.ad = action.payload.data;
+        state.count = action.payload.count;
+        state.ad = action.payload.advertisement;
         state.isLoading = false;
         state.error = null;
       })
@@ -37,7 +36,7 @@ const adSlice = createSlice({
 
       .addCase(createNewAd.pending, handlePending)
       .addCase(createNewAd.fulfilled, (state, action) => {
-        adSlice.caseReducers.addAdvert(state, action);
+        state.ad.push(action.payload);
         state.isLoading = false;
         state.error = null;
       })

@@ -2,6 +2,7 @@
 
 .container {
   max-height: calc(100vh - 70px);
+  width: 360px;
   padding: 20px 12px;
   overflow-y: scroll;
 
@@ -28,6 +29,11 @@
 .ads_title {
   font-size: 0.875rem;
   margin-bottom: 15px;
+}
+
+.ads_loader {
+  display: flex;
+  justify-content: center;
 }
 
 .ads_select_wrap {

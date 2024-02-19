@@ -1,9 +1,9 @@
 import React from 'react';
-
 import Advert from '../Advert';
 import s from './AdvertList.module.scss';
 import { useSelector } from 'react-redux';
-import { selectAd } from '../../redux/selectors';
+import { selectAd, selectIsLoading } from '../../redux/selectors';
+import { ProgressBar } from 'react-loader-spinner';
 
 interface IProp {
   visibleMarkers: number[];
@@ -17,18 +17,32 @@ const AdvertList: React.FC<IProp> = ({
   setSelectedPoint,
 }) => {
   const ads = useSelector(selectAd);
+  const isLoading = useSelector(selectIsLoading);
 
   const sortedAds = selectedPoint
-    ? ads.filter(({ id }) => id === selectedPoint)
-    : ads.filter(({ id }) => visibleMarkers.includes(id));
+    ? ads?.filter(({ _id }) => _id === selectedPoint)
+    : ads?.filter(({ _id }) => visibleMarkers.includes(_id));
 
   return (
     <div className={s.container}>
       <h2 className={s.ads_title}>
-        Знайдено {visibleMarkers.length}{' '}
-        {sortedAds.length >= 4 ? 'оголошеннь' : 'оголошення'} на видимій
+        Знайдено {visibleMarkers?.length}{' '}
+        {sortedAds?.length >= 4 ? 'оголошеннь' : 'оголошення'} на видимій
         території
       </h2>
+
+      {isLoading && (
+        <div className={s.ads_loader}>
+          <ProgressBar
+            visible={true}
+            height="80"
+            width="80"
+            borderColor="#283149"
+            barColor="#ceff7b"
+            ariaLabel="progress-bar-loading"
+          />
+        </div>
+      )}
 
       {selectedPoint && (
         <div className={s.ads_select_wrap}>
@@ -43,8 +57,8 @@ const AdvertList: React.FC<IProp> = ({
       )}
 
       <ul className={s.ads_list}>
-        {sortedAds.map(ad => (
-          <li key={ad.id} onClick={() => setSelectedPoint(ad.id)}>
+        {sortedAds?.map(ad => (
+          <li key={ad._id} onClick={() => setSelectedPoint(ad._id)}>
             <Advert {...ad} />
           </li>
         ))}

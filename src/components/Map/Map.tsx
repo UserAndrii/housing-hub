@@ -1,6 +1,6 @@
-import React, { useCallback, useRef } from 'react';
 import { debounce } from 'lodash';
 import { useSelector } from 'react-redux';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { GoogleMap, Marker } from '@react-google-maps/api';
 
 import s from './Map.module.scss';
@@ -54,23 +54,29 @@ const Map: React.FC<IProp> = ({
     mapRef.current = undefined;
   }, []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleBoundsChanged = useCallback(
     debounce(() => {
       if (mapRef.current) {
         const bounds = mapRef.current.getBounds();
         if (bounds) {
-          const visibleMarkers = points.filter(point =>
-            bounds.contains(
-              new google.maps.LatLng(point.position.lat, point.position.lng)
+          const visibleMarkers = points
+            ?.filter(point =>
+              bounds.contains(
+                new google.maps.LatLng(point.position.lat, point.position.lng)
+              )
             )
-          );
-          const visibleMarkerIds = visibleMarkers.map(marker => marker.id);
-          setVisibleMarkers(visibleMarkerIds);
+            .map(marker => marker._id);
+          setVisibleMarkers(visibleMarkers);
         }
       }
     }, 300),
     [mapRef, points]
   );
+
+  useEffect(() => {
+    handleBoundsChanged();
+  }, [handleBoundsChanged]);
 
   return (
     <div className={s.map_container}>
@@ -84,12 +90,13 @@ const Map: React.FC<IProp> = ({
         onBoundsChanged={handleBoundsChanged}
         options={defaultOptions}
       >
-        {points.map(({ id, position }) => (
+        {points?.map(({ _id, position }) => (
           <Marker
-            key={id}
+            key={_id}
             position={position}
-            icon={{ url: selectedPoint === id ? selectedMarker : marker }}
-            onClick={() => setSelectedPoint(id)}
+            icon={{ url: selectedPoint === _id ? selectedMarker : marker }}
+            zIndex={1000}
+            onClick={() => setSelectedPoint(_id)}
           />
         ))}
       </GoogleMap>

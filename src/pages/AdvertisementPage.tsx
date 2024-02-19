@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useJsApiLoader, Libraries } from '@react-google-maps/api';
 
 import Map from '../components/Map';
+import Loader from '../components/Loader';
 import Layout from '../components/Layout';
 import AdvertList from '../components/AdvertList';
 
@@ -31,9 +32,9 @@ const AdvertisementPage: React.FC = () => {
   });
 
   useEffect(() => {
-    dispatch(getAdvert());
+    if (isLoaded) dispatch(getAdvert());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isLoaded]);
 
   const onPlaceSelect = useCallback(
     (coordinates: React.SetStateAction<{ lat: number; lng: number }>) => {
@@ -59,7 +60,7 @@ const AdvertisementPage: React.FC = () => {
           />
         </Layout>
       ) : (
-        <h2>Loading...</h2>
+        <Loader />
       )}
     </IsLoadedMapContext.Provider>
   );
