@@ -35,7 +35,7 @@ feel comfortable and happy.
 locations of available apartments. Each marker on the map indicates the location
 of a specific listing, so you can quickly find options closest to you.
 
-  <p align="center">
+<p align="center">
   <img src="./src/images/forReadme/about_app_3.png" alt="RENTACAR">
 </p>
 
@@ -43,7 +43,7 @@ of a specific listing, so you can quickly find options closest to you.
 rental listing using our convenient form. Simply fill in the necessary details,
 add photos and descriptions, and submit your listing with just a few clicks.
 
-  <p align="center">
+<p align="center">
   <img src="./src/images/forReadme/about_app_4.png" alt="RENTACAR">
 </p>
 
@@ -53,7 +53,7 @@ automatically suggest options for selection. Additionally, after entering the
 address, the map will automatically move to display the location of your
 property.
 
-  <p align="center">
+<p align="center">
   <img src="./src/images/forReadme/about_app_5.png" alt="RENTACAR">
 </p>
 
