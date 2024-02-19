@@ -5,7 +5,7 @@ import AdvertisementPage from './pages/AdvertisementPage';
 
 export const router = createBrowserRouter([
   {
-    path: 'housing-hub/',
+    path: 'housing-hub',
     element: <HomePage />,
   },
   {
