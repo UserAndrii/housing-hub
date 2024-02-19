@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/housing-hub/static/css/main.9cc37461.css",
-    "main.js": "/housing-hub/static/js/main.78e0f320.js",
+    "main.js": "/housing-hub/static/js/main.38cb44d1.js",
     "static/media/home-page-map.png": "/housing-hub/static/media/home-page-map.0eaea966147ba8461b4f.png",
     "static/media/default-image.png": "/housing-hub/static/media/default-image.d990adfda5aa6d1d76cf.png",
     "static/media/hh-logo.png": "/housing-hub/static/media/hh-logo.384b25185f9df2cd3e39.png",
@@ -13,10 +13,10 @@
     "static/media/delete-icon.svg": "/housing-hub/static/media/delete-icon.66044579ba8823870471ff042adba79c.svg",
     "static/media/location.svg": "/housing-hub/static/media/location.715dc4c801a8e554b61fb4cae0025046.svg",
     "main.9cc37461.css.map": "/housing-hub/static/css/main.9cc37461.css.map",
-    "main.78e0f320.js.map": "/housing-hub/static/js/main.78e0f320.js.map"
+    "main.38cb44d1.js.map": "/housing-hub/static/js/main.38cb44d1.js.map"
   },
   "entrypoints": [
     "static/css/main.9cc37461.css",
-    "static/js/main.78e0f320.js"
+    "static/js/main.38cb44d1.js"
   ]
 }
