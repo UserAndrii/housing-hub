@@ -104,14 +104,6 @@ const Header: React.FC = () => {
                 Аукціон
               </NavLink>
             </li>
-            <li className={s.header_item}>
-              <NavLink
-                className={cn(s.header_link, s.disabled)}
-                to="/housing-hub/about"
-              >
-                Про нас
-              </NavLink>
-            </li>
           </ul>
 
           <div className={s.header_action_wrap}>
