@@ -76,7 +76,11 @@ const AdvertList: React.FC<IProp> = ({
 
       <ul className={s.ads_list}>
         {sortedAds?.map(ad => (
-          <li key={ad._id} onClick={() => setSelectedPoint(ad._id)}>
+          <li
+            className={s.ads_item}
+            key={ad._id}
+            onClick={() => setSelectedPoint(ad._id)}
+          >
             <Advert {...ad} />
           </li>
         ))}
